@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useRef} from "react";
 import Logo from "/logo.svg";
 // import {
 //   getAuth,
@@ -10,7 +10,9 @@ import Logo from "/logo.svg";
 // import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "../components/Button";
-import {ConnectButton} from "@rainbow-me/rainbowkit";
+import {useAccount, useDisconnect, useEnsAvatar, useEnsName, useSigner} from "wagmi"
+// import {ConnectButton} from "@rainbow-me/rainbowkit";
+import { CustomConnectButton } from "../components/ConnectButton";
 // import { ThreeCircles, Oval } from "react-loader-spinner";
 
 export const SignUp = () => {
@@ -90,7 +92,7 @@ export const SignUp = () => {
           /> */
             }
           ) : (
-            <ConnectButton style={{backgroundColor:"#7f56d9"}}/>
+            <CustomConnectButton />
           )}
           <p className="text-center pt-1">
             Already have an account?
