@@ -10,7 +10,7 @@ import Logo from "/logo.svg";
 // import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "../components/Button";
-import {useAccount, useDisconnect, useEnsAvatar, useEnsName, useSigner} from "wagmi"
+import {useAccount, useDisconnect, useEnsAvatar, useEnsName} from "wagmi"
 // import {ConnectButton} from "@rainbow-me/rainbowkit";
 import { CustomConnectButton } from "../components/ConnectButton";
 // import { ThreeCircles, Oval } from "react-loader-spinner";
@@ -19,10 +19,14 @@ export const SignUp = () => {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {address:userData, isConnected:userConnected, isDisconnected:userDisconnected} = useAccount();
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  if (userConnected){
+    navigate("/dashboard")
+  }
 
   // SIGNUP USER
   //   const handleSignUp = async (e) => {

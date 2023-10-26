@@ -7,22 +7,26 @@ import { Button } from "./Button";
 export const links = [
   {
     id: 1,
-    url: "/",
+    url: "/dashboard/home-dashboard",
+    icon: "/home.svg",
     text: "Home",
   },
   {
     id: 2,
-    url: "/contract-validation",
+    url: "/dashboard/contract-validation",
+    icon: "/validation.svg",
     text: "Contract Validaion",
   },
   {
     id: 3,
-    url: "/account",
+    url: "/dashboard/account",
+    icon: "/account.svg",
     text: "Account",
   },
   {
     id: 4,
-    url: "/transaction",
+    url: "/dashboard/transaction",
+    icon: "/home.svg",
     text: "Transaction",
   },
 ];
@@ -36,24 +40,24 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-3 h-full py-4 px-4 md:px-6 lg:px-8 bg-white border border-r-[#C6C9CF] sticky top-0 z-20">
-      <div className="w-full flex flex-col items-center justify-between">
+    <div className="w-[20%]  h-screen flex flex-col gap-3  py-4 px-4 md:px-6 lg:px-8 bg-white border border-r-[#C6C9CF] sticky top-0 z-20">
+      <div className="w-full flex flex-col items-start gap-16 justify-between py-10">
         <div className="flex flex-row gap-3 items-center">
           <img src={Logo} alt="logo" />
-          <h5 className="font-bold">Verify Chain</h5>
+          <h5 className="font-bold text-2xl">Verify Chain</h5>
         </div>
-        <ul className="hidden lg:flex items-center gap-5 lg:gap-[3rem] border rounded-full p-4">
+        <ul className="hidden lg:flex flex-col  gap-5 lg:gap-[2rem]  p-4">
           {links.map((links) => (
             <li className="group relative" key={links.id}>
               <Link
                 to={links.url}
-                className={`nav-item text-[#353A43] transition duration-300 ease-in text-lg font-medium ${
-                  location.pathname === links.url ? " text-[#7f56d9]" : ""
+                className={`nav-item py-2 px-3 text-[#353A43] transition duration-300 ease-in text-lg font-medium flex flex-row gap-3 ${
+                  location.pathname === links.url ? "text-[#7f56d9] bg-gray-200 rounded-lg" : ""
                 }`}
               >
-                {links.text}
+                <img src={links.icon}/>{links.text}
               </Link>
-              <div className="absolute w-full left-0 h-0.5 bg-[#7f56d9] transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100"></div>
+              {/* <div className="absolute w-full left-0 h-0.5 bg-[#7f56d9] transform scale-x-0 origin-left transition-transform duration-300 ease-in-out group-hover:scale-x-100"></div> */}
             </li>
           ))}
         </ul>
