@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import HomeDashboard from "./components/HomeDashboard";
+import Dashboard from "./pages/Dashboard";
+import Account from "./components/Account";
 import ContractValidation from "./components/ContractValidation";
-import {SignUp} from "./pages/Signup";
-import {SignIn} from "./pages/Signin";
+import { SignUp } from "./pages/Signup";
+import { SignIn } from "./pages/Signin";
 import "./App.css";
 
 function App() {
-
   return (
     <div className="flex flex-col">
       <Routes>
@@ -17,8 +17,9 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="home-dashboard" element={<HomeDashboard />} />
+          <Route index element={<HomeDashboard />} />
           <Route path="contract-validation" element={<ContractValidation />} />
+          <Route path="account" element={<Account />} />
         </Route>
       </Routes>
     </div>

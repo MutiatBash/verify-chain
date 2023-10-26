@@ -1,4 +1,6 @@
 import {Button} from "./Button";
+
+
 const ContractValidation =()=>{
     return(
     <div><p>Contract validation</p>

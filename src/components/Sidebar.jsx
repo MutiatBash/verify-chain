@@ -7,7 +7,7 @@ import { Button } from "./Button";
 export const links = [
   {
     id: 1,
-    url: "/dashboard/home-dashboard",
+    url: "/dashboard",
     icon: "/home.svg",
     text: "Home",
   },
@@ -42,7 +42,7 @@ const Sidebar = () => {
   return (
     <div className="w-[20%]  h-screen flex flex-col gap-3  py-4 px-4 md:px-6 lg:px-8 bg-white border border-r-[#C6C9CF] sticky top-0 z-20">
       <div className="w-full flex flex-col items-start gap-16 justify-between py-10">
-        <div className="flex flex-row gap-3 items-center">
+        <div className="flex flex-row gap-3 items-center justify-center">
           <img src={Logo} alt="logo" />
           <h5 className="font-bold text-2xl">Verify Chain</h5>
         </div>
