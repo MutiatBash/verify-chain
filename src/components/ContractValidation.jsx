@@ -1,7 +1,9 @@
 import { Button } from "./Button";
 import { useState } from "react";
+import {useEnsAddress} from "wagmi";
 
 const ContractValidation = () => {
+const{data:userAddress, isError:addressError, isLoading:addressLoading} = useEnsAddress({});
   const [error, setError] = useState("");
   const [contractDetails, setContractDetails] = useState("");
 
