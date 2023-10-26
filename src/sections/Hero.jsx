@@ -1,6 +1,7 @@
 // import React from 'react';
 import heroImg from '../assets/images/heroImg.svg';  
 import {Button} from '../components/Button'
+import {Link} from 'react-router-dom'
 
 const Hero = () => {
     return(
@@ -10,7 +11,7 @@ const Hero = () => {
                 <h1 className='text-3xl lg:text-6xl font-bold lg:w-[70%]'>Verify Chain is the new fortified web3 verification hub</h1>
                 <p className='lg:w-[60%]'>In the world of web3 and blockchain, trust is everything. Verify chain emerges as the 
                 definitive guardian of trust and security in the web3 universe and ensures that contract identities are validated.</p>
-                <Button text={"Connect wallet"} />
+                <Link to="/signup"> <Button text={"Connect wallet"} /></Link>
             </div>
             <div className="">
                 <img className='' src={heroImg} alt="hero-image" />

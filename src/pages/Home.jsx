@@ -3,10 +3,12 @@ import Features from "../sections/Features";
 import Purple from "../sections/Purple";
 import Steps from "../sections/Steps";
 import { Companies } from "../components/Companies";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   return (
     <div>
+      <Navbar/>
       <Hero />
       <Companies />
       <Features />
