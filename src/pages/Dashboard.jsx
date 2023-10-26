@@ -16,10 +16,6 @@ const Dashboard = () => {
     <div className="flex flex-row ">
       <Sidebar/>
       {/* <p>{userData?.address}</p> */}
-      {/* <div className="p-10">
-      <h5>Welcome</h5>
-      <img src={dashboardImg} />
-      </div> */}
       <Outlet/>
     </div>
   );
