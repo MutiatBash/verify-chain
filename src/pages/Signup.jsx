@@ -13,18 +13,19 @@ import { Button } from "../components/Button";
 import {useAccount, useDisconnect, useEnsAvatar, useEnsName} from "wagmi"
 // import {ConnectButton} from "@rainbow-me/rainbowkit";
 import { CustomConnectButton } from "../components/ConnectButton";
-// import { ThreeCircles, Oval } from "react-loader-spinner";
+import { ThreeCircles, Oval } from "react-loader-spinner";
 
 export const SignUp = () => {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
-  const {address:userData, isConnected:userConnected, isDisconnected:userDisconnected} = useAccount();
+  const {address:userData, isConnected:userConnected, isDisconnected:userDisconnected, isConnecting:userConnecting} = useAccount();
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  if (userConnected){
+  if (userConnecting || 
+    userConnected){
     navigate("/dashboard")
   }
 
@@ -85,16 +86,15 @@ export const SignUp = () => {
         </div>
 
         <div className="flex flex-col items-center gap-2 py-2">
-          {loading ? (
-            {
-              /* <ThreeCircles
+          {userConnecting ? (
+            <div className="bg-[#f756d9] rounded p-3">{
+             <ThreeCircles
               height="35"
               width="40"
               color="#6B21A8"
               visible={true}
               ariaLabel="three-circles-rotating"
-          /> */
-            }
+          />} </div>
           ) : (
             <CustomConnectButton />
           )}

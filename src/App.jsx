@@ -5,6 +5,7 @@ import HomeDashboard from "./components/HomeDashboard";
 import Dashboard from "./pages/Dashboard";
 import Account from "./components/Account";
 import ContractValidation from "./components/ContractValidation";
+import Validation from "./components/Validation";
 import { SignUp } from "./pages/Signup";
 import { SignIn } from "./pages/Signin";
 import "./App.css";
@@ -18,7 +19,9 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<HomeDashboard />} />
-          <Route path="contract-validation" element={<ContractValidation />} />
+          <Route path="contract-validation" element={<ContractValidation />} >
+                    <Route index element={<Validation />} />
+          </Route>
           <Route path="account" element={<Account />} />
         </Route>
       </Routes>

@@ -1,45 +1,51 @@
 import { Button } from "./Button";
 import { useState } from "react";
 import {useEnsAddress} from "wagmi";
+import {Link, Outlet} from "react-router-dom";
+
+const links = [
+  {
+    id: 1,
+    url: "/validation",
+    text: "Validation",
+  },
+  {
+    id: 2,
+    url: "/results",
+    text: "Results",
+  },
+  {
+    id: 3,
+    url: "/notifications",
+    text: "Notifications",
+  },
+];
 
 const ContractValidation = () => {
 const{data:userAddress, isError:addressError, isLoading:addressLoading} = useEnsAddress({});
   const [error, setError] = useState("");
-  const [contractDetails, setContractDetails] = useState("");
+  const [contractAddress, setContractAddress] = useState("");
 
-  const Validate = async (e) => {
-    e.preventDefault();
-    const response = await fetch(
-      "https://cyber-knights.onrender.com/verify?address=0x4a5c0f825DbF4BFe46Cd8D52c1Cce3ff1a6f539D"
-    );
-    const data = await response.json();
-    if (response.ok) {
-      return data;
-    } else {
-      console.error;
-      setError(error);
-    }
-  };
   return (
-    <div className="p-2 sm:py-8 mx-auto flex flex-col justify-center gap-5 lg:gap-8 items-center my-auto min-h-screen w-[80%]">
-      <form className="flex bg-white flex-col items-center gap-3 sm:gap-6 py-3 rounded sm:px-12 w-full justify-between sm:w-[80%] md:w-[75%] lg:w-[90%]">
-        {error ? <span className="text-red-600 text-xs">{error}</span> : ""}
-        <p className="text-[#7f56d9]">Contract validation</p>
-        <h3 className="font-bold text-3xl">
-          Validate your contract identities for security
-        </h3>
-        <p className="text-gray-400">Provide your details here</p>
-        <div className="flex flex-col justify-between pt-10">
-          <input
-            placeholder="Input contract details"
-            className="border-4 border-[#7f56d9] rounded-lg w-[800px] p-2 py-4 focus:outline-none focus:border-purple-800"
-            value={contractDetails}
-            required={true}
-            onChange={(e) => setContractDetails(e.target.value)}
-          />
-        </div>
-        <Button text={"Validate"} onClick={Validate} />
-      </form>
+    <div className=" p-6 pb-20 flex flex-col gap-5 lg:gap-8 items-center">
+      <div className="sticky z-20 self-start">
+        <ul className="lg:flex items-center gap-5 lg:gap-[3rem] border rounded-lg self-start p-4">
+          {links.map((links) => (
+            <li className="group relative" key={links.id}>
+              <Link
+                to={links.url}
+                className={`nav-item text-[#353A43] transition duration-300 ease-in text-lg font-medium ${
+                  location.pathname === links.url ? " bg-gray-200" : ""
+                }`}
+              >
+                {links.text}
+              </Link>
+              
+            </li>
+          ))}
+        </ul>
+      </div>
+    <Outlet className="flex-1"/>
     </div>
   );
 };
