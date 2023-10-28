@@ -33,7 +33,7 @@ export const SignUp = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  useEffect(() => {
+  // useEffect(() => {
     // if (userDisconnected) {
     //   navigate("/signin");
     //   // setLoading(false);
@@ -45,7 +45,7 @@ export const SignUp = () => {
     //  else {
     //   // setLoading(false);
     // }
-  }, []);
+  // }, []);
 
   // SIGNUP USER
   //   const handleSignUp = async (e) => {
