@@ -12,7 +12,8 @@ import google from "../assets/images/google.svg";
 // import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { IconButton } from "../components/Button";
-import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from "wagmi";
+import {InjectedConnector} from "wagmi/connectors/injected";
+import { useAccount, useDisconnect, useEnsAvatar, useConnect } from "wagmi";
 // import {ConnectButton} from "@rainbow-me/rainbowkit";
 import { CustomConnectButton } from "../components/ConnectButton";
 import { ThreeCircles, Oval } from "react-loader-spinner";
@@ -25,8 +26,10 @@ export const SignUp = () => {
     address: userData,
     isConnected: userConnected,
     isDisconnected: userDisconnected,
-    isConnecting: userConnecting,
+    isConnecting:userConnecting,
   } = useAccount();
+
+  // const {isLoading:userConnecting} = useConnect({connector: new InjectedConnector()})
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();

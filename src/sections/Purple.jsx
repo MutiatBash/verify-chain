@@ -9,7 +9,7 @@ const Purple = ({ heading, body, buttontext }) => {
         <div className="flex flex-row gap-3">
           <Button
             text={"Learn more"}
-            className="bg-white border text-black hover:text-[#7f56d9] hover:shadow hover:bg-white"
+            className="bg-white border text-slate-950 hover:text-[#7f56d9] hover:shadow hover:bg-white"
           />
           <Button text={"Get started"} />
         </div>
