@@ -1,7 +1,7 @@
 import { Button } from "./Button";
 import { useState } from "react";
 import { useEnsAddress } from "wagmi";
-import { Link , Outlet} from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const links = [
   {
@@ -44,7 +44,7 @@ const Validation = () => {
     }
   };
   return (
-    <div className=" mx-auto flex flex-col justify-center gap-5 lg:gap-8 items-center  min-h-screen w-[80%]">
+    <div className=" mx-auto flex flex-col flex-1 justify-center gap-5 lg:gap-8 items-center w-[80%]">
       <form className="flex  flex-col items-center gap-3 sm:gap-6 py-3 rounded sm:px-12 w-full justify-between sm:w-[80%] md:w-[75%] lg:w-[90%]">
         {error ? <span className="text-red-600 text-xs">{error}</span> : ""}
         <p className="text-[#7f56d9]">Contract validation</p>

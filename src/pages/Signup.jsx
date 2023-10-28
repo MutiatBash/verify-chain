@@ -1,6 +1,8 @@
 import React from "react";
-import { useState, useEffect , useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 import Logo from "/logo.svg";
+import discord from "/discord.svg";
+import google from "../assets/images/google.svg";
 // import {
 //   getAuth,
 //   createUserWithEmailAndPassword,
@@ -9,8 +11,8 @@ import Logo from "/logo.svg";
 // } from "firebase/auth";
 // import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
-import { Button } from "../components/Button";
-import {useAccount, useDisconnect, useEnsAvatar, useEnsName} from "wagmi"
+import { IconButton } from "../components/Button";
+import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from "wagmi";
 // import {ConnectButton} from "@rainbow-me/rainbowkit";
 import { CustomConnectButton } from "../components/ConnectButton";
 import { ThreeCircles, Oval } from "react-loader-spinner";
@@ -19,15 +21,27 @@ export const SignUp = () => {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
-  const {address:userData, isConnected:userConnected, isDisconnected:userDisconnected, isConnecting:userConnecting} = useAccount();
+  const {
+    address: userData,
+    isConnected: userConnected,
+    isDisconnected: userDisconnected,
+    isConnecting: userConnecting,
+  } = useAccount();
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  if (userConnecting || 
-    userConnected){
-    navigate("/dashboard")
-  }
+  useEffect(() => {
+    if (userDisconnected) {
+      setLoading(false);
+    } else if (userConnecting) {
+      setLoading(true);
+    } else if (userConnected) {
+      setLoading(false);
+      navigate("/dashboard");
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
   // SIGNUP USER
   //   const handleSignUp = async (e) => {
@@ -75,10 +89,10 @@ export const SignUp = () => {
       <form className="flex bg-white flex-col gap-3 sm:gap-6 py-3 rounded sm:px-12 w-full max-w-lg justify-between sm:w-[80%] md:w-[75%] lg:w-[60%]">
         {error ? <span className="text-red-600 text-xs">{error}</span> : ""}
         <div className="flex flex-col justify-between">
-          <label className="font-[500] py-1">Email Address</label>
+          <label className="font-[500] py-2">Email Address</label>
           <input
             placeholder="Email address"
-            className="border rounded p-2 w-full focus:outline-none focus:border-gray-400"
+            className="border rounded lg:rounded-lg p-2 lg:py-3 w-full focus:outline-none focus:border-gray-400"
             value={email}
             required={true}
             onChange={(e) => setEmail(e.target.value)}
@@ -86,18 +100,38 @@ export const SignUp = () => {
         </div>
 
         <div className="flex flex-col items-center gap-2 py-2">
-          {userConnecting ? (
-            <div className="bg-[#f756d9] rounded p-3">{
-             <ThreeCircles
-              height="35"
-              width="40"
-              color="#6B21A8"
-              visible={true}
-              ariaLabel="three-circles-rotating"
-          />} </div>
+          {loading ? (
+            <div className="bg-[#7f56d9] rounded-xl w-full p-3 flex flex-row items-center gap-2 justify-center text-white font-semibold">
+              <span>Connecting</span>
+              {
+                <ThreeCircles
+                  height="35"
+                  width="40"
+                  color="#fff"
+                  visible={true}
+                  ariaLabel="three-circles-rotating"
+                />
+              }{" "}
+            </div>
           ) : (
             <CustomConnectButton />
           )}
+
+          <div>
+            <hr></hr>
+            <span>OR</span>
+            <hr></hr>
+          </div>
+
+          <div className="flex flex-col gap-5 py-10 w-full">
+            <IconButton text={"Sign up with Email"} className="rounded-xl w-full" />
+            <IconButton
+              icon={discord}
+              className="w-full rounded-xl"
+              text={"Sign up with Discord"}
+            />
+            <IconButton icon={google} className="w-full rounded-xl" text={"Sign up with Google"} />
+          </div>
           <p className="text-center pt-1">
             Already have an account?
             <Link
