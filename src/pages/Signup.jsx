@@ -12,7 +12,7 @@ import google from "../assets/images/google.svg";
 // import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { IconButton } from "../components/Button";
-import {InjectedConnector} from "wagmi/connectors/injected";
+import { InjectedConnector } from "wagmi/connectors/injected";
 import { useAccount, useDisconnect, useEnsAvatar, useConnect } from "wagmi";
 // import {ConnectButton} from "@rainbow-me/rainbowkit";
 import { CustomConnectButton } from "../components/ConnectButton";
@@ -26,7 +26,7 @@ export const SignUp = () => {
     address: userData,
     isConnected: userConnected,
     isDisconnected: userDisconnected,
-    isConnecting:userConnecting,
+    isConnecting: userConnecting,
   } = useAccount();
 
   // const {isLoading:userConnecting} = useConnect({connector: new InjectedConnector()})
@@ -34,16 +34,17 @@ export const SignUp = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (userDisconnected) {
-      setLoading(false);
-    } else if (userConnecting) {
-      setLoading(true);
-    } else if (userConnected) {
-      setLoading(false);
+    // if (userDisconnected) {
+    //   navigate("/signin");
+    //   // setLoading(false);
+    // }
+    if (userConnected) {
+      // setLoading(false);
       navigate("/dashboard");
-    } else {
-      setLoading(false);
     }
+    //  else {
+    //   // setLoading(false);
+    // }
   }, []);
 
   // SIGNUP USER
@@ -127,13 +128,20 @@ export const SignUp = () => {
           </div>
 
           <div className="flex flex-col gap-5 py-10 w-full">
-            <IconButton text={"Sign up with Email"} className="rounded-xl w-full" />
+            <IconButton
+              text={"Sign up with Email"}
+              className="rounded-xl w-full"
+            />
             <IconButton
               icon={discord}
               className="w-full rounded-xl"
               text={"Sign up with Discord"}
             />
-            <IconButton icon={google} className="w-full rounded-xl" text={"Sign up with Google"} />
+            <IconButton
+              icon={google}
+              className="w-full rounded-xl"
+              text={"Sign up with Google"}
+            />
           </div>
           <p className="text-center pt-1">
             Already have an account?
